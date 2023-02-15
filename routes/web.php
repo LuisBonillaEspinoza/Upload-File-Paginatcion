@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+//Upload File
+Route::get('/', [UploadController::class,'index'])->name('upload.index');
+Route::post('/guardar',[UploadController::class,'store'])->name('upload.store');
