@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\File;
 use App\Http\Requests\UploadRequest;
+use Illuminate\Support\Facades\Storage;
 
 class UploadController extends Controller
 {
@@ -30,5 +31,10 @@ class UploadController extends Controller
 
         return redirect()->route('upload.index')->with('success','Subido Correctamente');
         // return redirect()->route('upload.index')->with('success',$filename);
+    }
+
+    //Descargar el archivo
+    public function download(File $file){
+        return Storage::disk('public')->download($file['name']);
     }
 }

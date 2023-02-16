@@ -21,8 +21,9 @@ class UploadRequest extends FormRequest
      */
     public function rules(): array
     {
+        //Validacion de solo imagenes
         return [
-            'file' => 'required|max:2048',
+            'file' => 'required|max:2048|mimes:jpg,png',
         ];
     }
 }

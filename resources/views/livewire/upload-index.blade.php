@@ -32,6 +32,7 @@
                     </td>
                     <td>
                         <a href="{{ $file->location }}">Mostrar Imagen</a>
+                        <a href="{{ route('upload.download',$file) }}">Descargar Imagen</a>
                     </td>
                 </tr>
                 @endforeach
