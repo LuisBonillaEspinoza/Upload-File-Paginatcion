@@ -10,4 +10,6 @@ class File extends Model
     use HasFactory;
 
     protected $fillable = ['name','size','location'];
+
+    protected $dates = ['created_at'];
 }

@@ -16,21 +16,19 @@ class UploadController extends Controller
     }
 
     public function store(UploadRequest $request){
-        $datos = $request->validate();
+        $datos = $request->validated();
         
-        // foreach($datos->file as $files){
-        //     // $filename = time().'_'.$files->getClientOriginalName();
-        //     // $filesize = $files->getSize();
-        //     $files->storeAs('public/',$filename);
+            $filename = time().'_'.$datos['file']->getClientOriginalName();
+            $filesize = $datos['file']->getSize();
+            $datos['file']->storeAs('public/',$filename);
 
-        //     $fileModel = new File;
-        //     $fileModel->name = time().'_'.$files->getClientOriginalName();
-        //     $fileModel->size = $files->getSize();
-        //     $fileModel->location = 'storage/'.time().'_'.$files->getClientOriginalName();
-        //     $fileModel->save();
-        // }
+            $fileModel = new File;
+            $fileModel->name = $filename;
+            $fileModel->size = $filesize;
+            $fileModel->location = 'storage/'.$filename;
+            $fileModel->save();
 
-        dd($datos);
         return redirect()->route('upload.index')->with('success','Subido Correctamente');
+        // return redirect()->route('upload.index')->with('success',$filename);
     }
 }
